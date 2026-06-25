@@ -49,9 +49,9 @@ class Airplane:
 
     def to_dict(self):
         return {
-            'callsign': self.callsign,
-            'origin_country': self.origin_country,
-            'velocity': self.velocity,
-            'altitude': self.altitude,
-            'on_ground': self.on_ground
+            "callsign": self.callsign,
+            "origin_country": self.origin_country,
+            "velocity": self.velocity,
+            "altitude": self.altitude,
+            "on_ground": self.on_ground,
         }

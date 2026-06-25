@@ -47,7 +47,8 @@ class JSONSaver(BaseFileSaver):
         data = self.read_data()
         initial_len = len(data)
         data = [
-            a for a in data
+            a
+            for a in data
             if not (a.get("callsign") == airplane.callsign and a.get("origin_country") == airplane.origin_country)
         ]
         if len(data) == initial_len:
