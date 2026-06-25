@@ -9,10 +9,10 @@ class APIAdapter(BaseAPIClient):
     def __init__(self) -> None:
         self.session = requests.Session()
         self.session.headers.update({
-            'User-Agent': 'YourAppName/1.0 contact@yourdomain.com'  # Укажите свои данные
+            'User-Agent': 'Gluyki/1.0 betonbar@bk.ru'
         })
 
-    def get_country_coordinates(self, country_name: str) -> dict:
+    def get_country_coordinates(self, country_name):
         params = {
             'q': country_name,
             'format': 'json',
@@ -49,7 +49,7 @@ class APIAdapter(BaseAPIClient):
         except Exception as e:
             raise Exception(f"Ошибка при запросе к Nominatim: {str(e)}")
 
-    def get_airplanes_in_area(self, south: float, north: float, west: float, east: float) -> list:
+    def get_airplanes_in_area(self, south, north, west, east):
         params = {
             'lamin': south,
             'lamax': north,

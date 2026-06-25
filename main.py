@@ -24,6 +24,7 @@ def user_interaction():
 
             print("Получаем данные о самолётах...")
             airplanes_data = api_client.get_airplanes_in_area(**coords)
+            print(airplanes_data)
             airplanes = Airplane.cast_to_object_list(airplanes_data)
 
             for airplane in airplanes:
@@ -41,7 +42,7 @@ def user_interaction():
             print("2. Самолёты по стране регистрации")
             print("3. Узнать количество самолётов в небе")
             print("4. Выйти")
-            print("5. Запросить данные по другой стране")  # Добавил для удобства
+            print("5. Запросить данные по другой стране")
 
             choice = input("Выберите действие цифрой: ").strip()
 
@@ -89,10 +90,7 @@ def user_interaction():
 
             elif choice == '3':
                 in_flight = [a for a in airplanes if not a.on_ground]
-                on_ground = [a for a in airplanes if a.on_ground]
-                print(f"\nВсего в базе: {len(airplanes)} самолётов")
                 print(f"В небе сейчас зафиксировано: {len(in_flight)} самолётов")
-                print(f"На земле: {len(on_ground)} самолётов")
 
             elif choice == '4':
                 print("До свидания!")

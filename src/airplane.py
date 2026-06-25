@@ -47,7 +47,7 @@ class Airplane:
                 continue
         return airplanes
 
-    def to_dict(self) -> dict:
+    def to_dict(self):
         return {
             'callsign': self.callsign,
             'origin_country': self.origin_country,
