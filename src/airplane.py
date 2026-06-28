@@ -1,5 +1,5 @@
 class Airplane:
-    def __init__(self, callsign, origin_country, velocity, altitude, on_ground):
+    def __init__(self, callsign: str, origin_country: str, velocity: float, altitude: float, on_ground: bool) -> None:
         self.validate_data(callsign, origin_country, velocity, altitude)
         self.callsign = callsign.strip()
         self.origin_country = origin_country.strip()

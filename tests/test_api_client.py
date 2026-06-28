@@ -54,6 +54,7 @@ def test_country_no(adapter):
         with pytest.raises(Exception, match="не найдена"):
             adapter.get_country_coordinates(country)
 
+
 def test_missing_boundingbox_raises(adapter):
     country = "Canada"
 
@@ -64,6 +65,7 @@ def test_missing_boundingbox_raises(adapter):
     with patch.object(adapter.session, "get", return_value=mock_response):
         with pytest.raises(Exception, match="Boundingbox отсутствует"):
             adapter.get_country_coordinates(country)
+
 
 def test_invalid_bbox_format_raises(adapter):
     country = "Canada"
@@ -76,6 +78,7 @@ def test_invalid_bbox_format_raises(adapter):
         with pytest.raises(Exception, match="Неверный формат"):
             adapter.get_country_coordinates(country)
 
+
 def test_nominatim_non_200_raises(adapter):
     country = "Canada"
 
@@ -87,16 +90,14 @@ def test_nominatim_non_200_raises(adapter):
         with pytest.raises(Exception, match="Ошибка API Nominatim"):
             adapter.get_country_coordinates(country)
 
+
 def test_nominatim_timeout_raises(adapter):
     country = "Canada"
 
-    with patch.object(
-            adapter.session,
-            "get",
-            side_effect=requests.exceptions.Timeout
-    ):
+    with patch.object(adapter.session, "get", side_effect=requests.exceptions.Timeout):
         with pytest.raises(Exception, match="Таймаут при запросе к Nominatim"):
             adapter.get_country_coordinates(country)
+
 
 def test_airplanes_in_area_ok(adapter, test_fly_1):
     south, north, west, east = 40.0, 50.0, -120.0, -100.0
@@ -117,6 +118,7 @@ def test_airplanes_in_area_ok(adapter, test_fly_1):
 
     assert result == test_fly_1
 
+
 def test_airplanes_in_area_key_no(adapter):
     south, north, west, east = 40.0, 50.0, -120.0, -100.0
 
@@ -127,6 +129,7 @@ def test_airplanes_in_area_key_no(adapter):
     with patch.object(adapter.session, "get", return_value=mock_response):
         result = adapter.get_airplanes_in_area(south, north, west, east)
         assert result == []
+
 
 def test_airplanes_in_area_no(adapter):
     south, north, west, east = 40.0, 50.0, -120.0, -100.0
@@ -151,14 +154,10 @@ def test_opensky_no_200_raises(adapter):
         with pytest.raises(Exception, match="Ошибка API OpenSky"):
             adapter.get_airplanes_in_area(south, north, west, east)
 
+
 def test_opensky_timeout_raises(adapter):
     south, north, west, east = 40.0, 50.0, -120.0, -100.0
 
-    with patch.object(
-            adapter.session,
-            "get",
-            side_effect=requests.exceptions.Timeout
-    ):
+    with patch.object(adapter.session, "get", side_effect=requests.exceptions.Timeout):
         with pytest.raises(Exception, match="Таймаут при запросе к OpenSky"):
             adapter.get_airplanes_in_area(south, north, west, east)
-

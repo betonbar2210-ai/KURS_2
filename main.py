@@ -24,7 +24,6 @@ def user_interaction():
 
             print("Получаем данные о самолётах...")
             airplanes_data = api_client.get_airplanes_in_area(**coords)
-            print(airplanes_data)
             airplanes = Airplane.cast_to_object_list(airplanes_data)
 
             for airplane in airplanes:
