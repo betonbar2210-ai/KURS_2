@@ -38,6 +38,7 @@ line_length = 119
 
 [tool.black]
 line-length = 119
+target-version = ["py314"]
 exclude = """
 (
     /(
